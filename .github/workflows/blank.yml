@@ -1,24 +1,51 @@
-on: 
+# on: 
+#   push:
+#     branches:
+#       - main
+# name: 🚀 Deploy website on push
+
+# jobs:
+#   web-deploy:
+#     name: 🎉 Deploy website
+#     runs-on: ubuntu-latest
+#     steps:
+#     # Checkout the repository
+#     - name: 🚚 Get latest code
+#       uses: actions/checkout@v4
+#     # sync files via FTP
+#     - name: Deploy via SFTP
+#       uses: appleboy/scp-action@v0.1.7
+#       with:
+#         host: ${{ secrets.FTP_SERVER }}
+#         username: ${{ secrets.FTP_USERNAME }}
+#         password: ${{ secrets.FTP_PASSWORD }}
+#         port: 22
+#         # server-dir: /public_html/fahim/
+#         server-dir: /htdocs/sfl5.ncgrp.xyz/devops/
+
+
+name: 🚀 Deploy website on push
+
+on:
   push:
     branches:
       - main
-name: 🚀 Deploy website on push
 
 jobs:
   web-deploy:
     name: 🎉 Deploy website
     runs-on: ubuntu-latest
+
     steps:
-    # Checkout the repository
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v4
-    # sync files via FTP
-    - name: Deploy via SFTP
-      uses: appleboy/scp-action@v0.1.7
-      with:
-        host: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        port: 22
-        # server-dir: /public_html/fahim/
-        server-dir: /htdocs/sfl5.ncgrp.xyz/devops/
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+
+      - name: 📤 Deploy via SFTP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 22
+          source: "./*"
+          target: "/htdocs/sfl5.ncgrp.xyz/devops/"
