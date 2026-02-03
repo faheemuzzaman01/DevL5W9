@@ -16,8 +16,9 @@ jobs:
     - name: 📂 Sync files via FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
-        server: ${{ secrets.FTP_SERVER }}
+        host: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
+        port: 22
         # server-dir: /public_html/fahim/
         server-dir: /htdocs/sfl5.ncgrp.xyz/devops/
